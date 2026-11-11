@@ -1,280 +1,1591 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Proyek Digital</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Petualangan Bentuk & Ruang - Matematika Kelas 2 SD</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Fredoka (Judul Ceria) & Nunito (Teks Ramah Anak) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fredoka', 'cursive', 'sans-serif'],
+            body: ['Nunito', 'sans-serif'],
+          },
+          colors: {
+            skybg: '#E8F7FF',
+            creambg: '#FFFDF7',
+          }
+        }
+      }
+    };
+  </script>
+
   <style>
-    :root {
-      --bg: #0f172a;
-      --surface: #1e293b;
-      --surface-hover: #26354d;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.15);
-      --border: #334155;
-    }
-
-    [data-theme="light"] {
-      --bg: #f8fafc;
-      --surface: #ffffff;
-      --surface-hover: #f1f5f9;
-      --text: #0f172a;
-      --muted: #64748b;
-      --accent: #0284c7;
-      --accent-glow: rgba(2, 132, 199, 0.12);
-      --border: #e2e8f0;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    /* Tema Buku Cerita & Taman Bermain Ceria */
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      transition: background-color 0.25s ease, color 0.25s ease;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(180deg, #DFF4FF 0%, #FFFDF5 48%, #F3FBE8 100%);
+      color: #1E293B;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .container {
-      width: 100%;
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 1.25rem;
-      flex: 1;
+    h1, h2, h3, .font-kid {
+      font-family: 'Fredoka', sans-serif;
+      letter-spacing: 0.01em;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 2.5rem;
+    /* Gaya Tombol & Kartu 3D Candy (Seperti Duolingo / Khan Academy Kids) */
+    .candy-card {
+      background: #FFFFFF;
+      border: 3px solid #E2E8F0;
+      border-bottom-width: 7px;
+      border-radius: 1.5rem;
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .candy-card-interactive:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -8px rgba(14, 165, 233, 0.22);
+    }
+    .candy-card-interactive:active {
+      transform: translateY(2px);
+      border-bottom-width: 4px;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--accent);
-      background: var(--accent-glow);
-      padding: 0.35rem 0.8rem;
+    .candy-btn {
+      font-family: 'Fredoka', sans-serif;
+      border-bottom-width: 5px;
+      border-radius: 1.1rem;
+      transition: transform 0.12s ease, filter 0.15s ease;
+      user-select: none;
+    }
+    .candy-btn:hover {
+      filter: brightness(1.04);
+      transform: translateY(-2px);
+    }
+    .candy-btn:active {
+      transform: translateY(3px);
+      border-bottom-width: 2px;
+    }
+
+    /* Animasi Dekoratif Mengambang */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
+    @keyframes bouncePop {
+      0% { transform: scale(0.85); }
+      50% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-6deg); }
+      75% { transform: rotate(6deg); }
+    }
+    .animate-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+    .animate-float-delay {
+      animation: floatSlow 6.5s ease-in-out 1.5s infinite;
+    }
+    .animate-pop {
+      animation: bouncePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .animate-wiggle:hover {
+      animation: wiggle 0.45s ease-in-out;
+    }
+
+    /* Kanvas Menggambar Bebas Gangguan Scroll di HP/Tablet */
+    #drawingHolder {
+      touch-action: none;
+      position: relative;
+      background-color: #FFFFFF;
+      background-image: radial-gradient(#E2E8F0 1.2px, transparent 1.2px);
+      background-size: 22px 22px;
+    }
+
+    /* Scrollbar Ceria */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #E0F2FE;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #38BDF8;
       border-radius: 999px;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      background-color: #22c55e;
-      border-radius: 50%;
-    }
-
-    .theme-btn {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 0.5rem 0.9rem;
-      border-radius: 0.6rem;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    .theme-btn:hover {
-      background: var(--surface-hover);
-    }
-
-    .hero {
-      margin-bottom: 2rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero p {
-      color: var(--muted);
-      max-width: 600px;
-      font-size: 1rem;
-    }
-
-    .search-box {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      margin-bottom: 1.75rem;
-      border-radius: 0.75rem;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      font-size: 0.95rem;
-      outline: none;
-    }
-
-    .search-box:focus {
-      border-color: var(--accent);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent);
-      background: var(--surface-hover);
-    }
-
-    .card-tag {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .card h2 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .card-link {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: var(--muted);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--border);
+    /* Mode Cetak Khusus Sertifikat */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #certificatePrintArea, #certificatePrintArea * {
+        visibility: visible;
+      }
+      #certificatePrintArea {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border-width: 6px !important;
+        box-shadow: none !important;
+      }
+      .no-print {
+        display: none !important;
+      }
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <div class="badge">
-        <span class="dot"></span>
-        Aktif di GitHub Pages
-      </div>
-      <button class="theme-btn" id="themeToggle" type="button">Ubah Tema</button>
-    </header>
+<body class="relative selection:bg-yellow-200 selection:text-slate-900">
 
-    <!-- Ubah judul dan deskripsi utama di bagian ini -->
-    <section class="hero">
-      <h1>Workspace &amp; Aplikasi Web</h1>
-      <p>Kumpulan aplikasi web, eksperimen kreatif, dan utilitas digital yang dapat dijalankan langsung dari browser.</p>
-    </section>
+  <!-- Kanvas Konfeti Perayaan (Layar Penuh Non-Blocking) -->
+  <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
 
-    <input
-      type="text"
-      id="searchInput"
-      class="search-box"
-      placeholder="Cari nama proyek atau kategori..."
-    >
-
-    <!-- Ubah href="#" dengan link repositori atau folder aplikasi kamu -->
-    <main class="grid" id="projectGrid">
-      <a href="#" class="card">
-        <div>
-          <div class="card-tag">Multimedia</div>
-          <h2>Studio Konverter Media</h2>
-          <p>Alat konversi dokumen, gambar, dan audio-video praktis langsung dari browser.</p>
-        </div>
-        <span class="card-link">Buka Aplikasi &rarr;</span>
-      </a>
-
-      <a href="#" class="card">
-        <div>
-          <div class="card-tag">Hiburan</div>
-          <h2>Web Game Interaktif</h2>
-          <p>Permainan ringan lintas perangkat untuk PC maupun ponsel pintar tanpa instalasi.</p>
-        </div>
-        <span class="card-link">Mainkan Sekarang &rarr;</span>
-      </a>
-
-      <a href="#" class="card">
-        <div>
-          <div class="card-tag">Produktivitas</div>
-          <h2>Catatan Keuangan</h2>
-          <p>Pantau pemasukan, pengeluaran bulanan, dan ringkasan anggaran secara rapi.</p>
-        </div>
-        <span class="card-link">Buka Dashboard &rarr;</span>
-      </a>
-    </main>
+  <!-- Dekorasi Bentuk Mengambang di Latar Belakang -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-45" aria-hidden="true">
+    <div class="absolute top-20 left-4 md:left-12 animate-float">
+      <svg width="56" height="56" viewBox="0 0 60 60"><polygon points="30,6 56,52 4,52" fill="#FDA4AF" stroke="#F43F5E" stroke-width="3" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="absolute top-36 right-6 md:right-14 animate-float-delay">
+      <svg width="52" height="52" viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="#7DD3FC" stroke="#0284C7" stroke-width="3"/></svg>
+    </div>
+    <div class="absolute bottom-24 left-8 animate-float-delay">
+      <svg width="50" height="50" viewBox="0 0 60 60"><rect x="8" y="8" width="44" height="44" rx="8" fill="#86EFAC" stroke="#16A34A" stroke-width="3"/></svg>
+    </div>
+    <div class="absolute bottom-16 right-10 animate-float">
+      <svg width="58" height="58" viewBox="0 0 60 60"><polygon points="30,4 37,22 56,22 41,34 46,53 30,42 14,53 19,34 4,22 23,22" fill="#FDE047" stroke="#CA8A04" stroke-width="3" stroke-linejoin="round"/></svg>
+    </div>
   </div>
 
-  <footer>
-    &copy; <span id="year"></span> Dipublikasikan menggunakan GitHub Desktop &amp; GitHub Pages.
+  <!-- Notifikasi Toast Ramah Anak -->
+  <div id="toastContainer" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none w-11/12 max-w-md"></div>
+
+  <!-- ================= HEADER UTAMA ================= -->
+  <header class="relative z-20 max-w-6xl mx-auto px-3 sm:px-6 pt-4 pb-2 no-print">
+    <div class="bg-white/95 backdrop-blur border-4 border-sky-300 border-b-8 rounded-3xl p-3 sm:p-4 shadow-lg flex flex-col lg:flex-row items-center justify-between gap-3">
+      
+      <!-- Logo & Judul -->
+      <div class="flex items-center gap-3 w-full lg:w-auto justify-center lg:justify-start">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-amber-300 via-orange-300 to-pink-400 border-2 border-amber-500 border-b-4 flex items-center justify-center shadow-sm shrink-0 animate-wiggle">
+          <!-- Maskot Bentuk Kawaii -->
+          <svg width="44" height="44" viewBox="0 0 64 64">
+            <polygon points="32,6 58,52 6,52" fill="#FFFBEB" stroke="#D97706" stroke-width="3.5" stroke-linejoin="round"/>
+            <circle cx="25" cy="37" r="3.5" fill="#1E293B"/>
+            <circle cx="39" cy="37" r="3.5" fill="#1E293B"/>
+            <circle cx="20" cy="42" r="3" fill="#FB7185" opacity="0.7"/>
+            <circle cx="44" cy="42" r="3" fill="#FB7185" opacity="0.7"/>
+            <path d="M27,43 Q32,48 37,43" fill="none" stroke="#1E293B" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="text-center sm:text-left">
+          <span class="inline-block bg-pink-100 text-pink-700 border border-pink-300 text-xs sm:text-sm font-extrabold px-2.5 py-0.5 rounded-full mb-0.5">
+            📚 Matematika Kelas 2 SD
+          </span>
+          <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-sky-900 leading-tight">
+            Petualangan Bentuk &amp; Ruang
+          </h1>
+        </div>
+      </div>
+
+      <!-- Bar Info Siswa, Bintang, & Suara -->
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 w-full lg:w-auto">
+        <!-- Lencana Siswa (Klik untuk Ubah) -->
+        <button onclick="openStudentModal()" class="candy-btn bg-sky-100 hover:bg-sky-200 border-2 border-sky-300 border-b-sky-400 text-sky-900 px-3.5 py-2 flex items-center gap-2 text-sm sm:text-base" title="Klik untuk mengubah Nama & Kelas">
+          <span class="text-xl">🎒</span>
+          <div class="text-left leading-tight">
+            <div id="headerStudentName" class="font-bold text-sky-950 max-w-[130px] truncate">Teman Hebat</div>
+            <div id="headerStudentClass" class="text-xs font-extrabold text-sky-700">Kelas 2 SD ✏️</div>
+          </div>
+        </button>
+
+        <!-- Penghitung Bintang -->
+        <div id="starBadge" class="bg-amber-100 border-2 border-amber-400 border-b-4 border-b-amber-500 rounded-2xl px-4 py-2 flex items-center gap-2 shadow-sm">
+          <span class="text-2xl leading-none">⭐</span>
+          <div class="leading-tight">
+            <div class="text-[11px] uppercase tracking-wider font-extrabold text-amber-800">Bintangku</div>
+            <div id="starCountText" class="font-kid text-lg sm:text-xl font-bold text-amber-950">0</div>
+          </div>
+        </div>
+
+        <!-- Tombol Suara -->
+        <button id="soundToggleBtn" onclick="toggleSound()" class="candy-btn bg-emerald-400 border-2 border-emerald-600 border-b-emerald-700 text-white px-3.5 py-2.5 text-sm sm:text-base font-bold flex items-center gap-1.5">
+          <span id="soundIcon" class="text-lg">🔊</span>
+          <span id="soundLabel" class="hidden sm:inline">Suara Aktif</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ================= NAVIGASI 5 TAB AKTIVITAS ================= -->
+    <nav class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5" aria-label="Menu Belajar">
+      <button onclick="switchTab('kenali')" id="tabBtn-kenali" class="nav-tab candy-btn px-3 py-3 text-sm sm:text-base font-bold flex items-center justify-center gap-2 border-2">
+        <span class="text-xl">🎨</span>
+        <span>1. Kenali Bentuk</span>
+      </button>
+      <button onclick="switchTab('pasangkan')" id="tabBtn-pasangkan" class="nav-tab candy-btn px-3 py-3 text-sm sm:text-base font-bold flex items-center justify-center gap-2 border-2">
+        <span class="text-xl">🔗</span>
+        <span>2. Pasangkan</span>
+      </button>
+      <button onclick="switchTab('kuis')" id="tabBtn-kuis" class="nav-tab candy-btn px-3 py-3 text-sm sm:text-base font-bold flex items-center justify-center gap-2 border-2">
+        <span class="text-xl">🧩</span>
+        <span>3. Kuis &amp; Cerita</span>
+      </button>
+      <button onclick="switchTab('gambar')" id="tabBtn-gambar" class="nav-tab candy-btn px-3 py-3 text-sm sm:text-base font-bold flex items-center justify-center gap-2 border-2">
+        <span class="text-xl">✏️</span>
+        <span>4. Menggambar</span>
+      </button>
+      <button onclick="switchTab('rapor')" id="tabBtn-rapor" class="nav-tab candy-btn col-span-2 sm:col-span-1 px-3 py-3 text-sm sm:text-base font-bold flex items-center justify-center gap-2 border-2">
+        <span class="text-xl">🏅</span>
+        <span>5. Rapor &amp; Refleksi</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ================= KONTEN UTAMA ================= -->
+  <main class="relative z-10 max-w-6xl mx-auto px-3 sm:px-6 py-4 pb-16">
+
+    <!-- ========================================================= -->
+    <!-- TAB 1: KENALI BENTUK (ENSIKLOPEDIA VISUAL INTERAKTIF)     -->
+    <!-- ========================================================= -->
+    <section id="tab-kenali" class="tab-panel space-y-6">
+
+      <!-- Kartu Spesial: AWAS TERTUKAR 2D vs 3D -->
+      <div class="candy-card border-amber-300 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 p-4 sm:p-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-amber-400 text-white flex items-center justify-center text-2xl shrink-0 shadow">
+              💡
+            </div>
+            <div>
+              <h2 class="text-lg sm:text-xl font-bold text-amber-950">
+                Awas Tertukar! Bedanya Bangun Datar (2D) &amp; Bangun Ruang (3D)
+              </h2>
+              <p class="text-sm sm:text-base text-amber-900/90 font-semibold mt-0.5">
+                <strong>Bangun Datar (2D)</strong> itu rata/tipis seperti gambar di kertas. Sedangkan <strong>Bangun Ruang (3D)</strong> punya ruang/isi dan bisa digenggam dari segala arah!
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="speakComparisonGuide()" class="candy-btn bg-amber-400 hover:bg-amber-500 border-2 border-amber-600 border-b-amber-700 text-amber-950 px-3.5 py-2 text-sm font-bold flex items-center gap-1.5">
+              <span>🔊</span> <span>Dengarkan</span>
+            </button>
+            <button onclick="toggleComparisonBox()" id="toggleCompBtn" class="candy-btn bg-white border-2 border-amber-400 border-b-amber-500 text-amber-900 px-3.5 py-2 text-sm font-bold">
+              Lihat Contoh 👀
+            </button>
+          </div>
+        </div>
+
+        <!-- Tabel Perbandingan Visual (Lingkaran vs Bola, Persegi vs Kubus, Persegi Panjang vs Balok) -->
+        <div id="comparisonDetails" class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Pasangan 1: Lingkaran vs Bola -->
+          <div class="bg-white rounded-2xl p-3.5 border-2 border-amber-200 shadow-sm">
+            <div class="text-xs font-black uppercase tracking-wider text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full inline-block mb-2">
+              ⭐ Paling Sering Tertukar!
+            </div>
+            <div class="grid grid-cols-2 gap-2 items-center text-center">
+              <div class="bg-sky-50 rounded-xl p-2 border border-sky-200">
+                <div class="w-16 h-16 mx-auto" data-mini-shape="lingkaran"></div>
+                <div class="font-kid font-bold text-sky-900 text-sm mt-1">Lingkaran</div>
+                <div class="text-[11px] font-bold text-sky-700">Bangun Datar (2D)</div>
+                <div class="text-[11px] text-slate-600 mt-0.5">🕒 Jam dinding, 🪙 Koin</div>
+              </div>
+              <div class="bg-rose-50 rounded-xl p-2 border border-rose-200">
+                <div class="w-16 h-16 mx-auto" data-mini-shape="bola"></div>
+                <div class="font-kid font-bold text-rose-900 text-sm mt-1">Bola</div>
+                <div class="text-[11px] font-bold text-rose-700">Bangun Ruang (3D)</div>
+                <div class="text-[11px] text-slate-600 mt-0.5">⚽ Bola sepak, 🍊 Jeruk</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pasangan 2: Persegi vs Kubus -->
+          <div class="bg-white rounded-2xl p-3.5 border-2 border-amber-200 shadow-sm">
+            <div class="text-xs font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full inline-block mb-2">
+              Kotak Tipis vs Kotak Dadu
+            </div>
+            <div class="grid grid-cols-2 gap-2 items-center text-center">
+              <div class="bg-emerald-50 rounded-xl p-2 border border-emerald-200">
+                <div class="w-16 h-16 mx-auto" data-mini-shape="persegi"></div>
+                <div class="font-kid font-bold text-emerald-900 text-sm mt-1">Persegi</div>
+                <div class="text-[11px] font-bold text-emerald-700">Bangun Datar (2D)</div>
+                <div class="text-[11px] text-slate-600 mt-0.5">🖼️ Bingkai, Ubin</div>
+              </div>
+              <div class="bg-pink-50 rounded-xl p-2 border border-pink-200">
+                <div class="w-16 h-16 mx-auto" data-mini-shape="kubus"></div>
+                <div class="font-kid font-bold text-pink-900 text-sm mt-1">Kubus</div>
+                <div class="text-[11px] font-bold text-pink-700">Bangun Ruang (3D)</div>
+                <div class="text-[11px] text-slate-600 mt-0.5">🎲 Dadu, 🎁 Kado</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pasangan 3: Persegi Panjang vs Balok -->
+          <div class="bg-white rounded-2xl p-3.5 border-2 border-amber-200 shadow-sm">
+            <div class="text-xs font-black uppercase tracking-wider text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full inline-block mb-2">
+              Panjang Tipis vs Kardus
+            </div>
+            <div class="grid grid-cols-2 gap-2 items-center text-center">
+              <div class="bg-purple-50 rounded-xl p-2 border border-purple-200">
+                <div class="w-16 h-16 mx-auto" data-mini-shape="persegi_panjang"></div>
+                <div class="font-kid font-bold text-purple-900 text-sm mt-1">Persegi Panjang</div>
+                <div class="text-[11px] font-bold text-purple-700">Bangun Datar (2D)</div>
+                <div class="text-[11px] text-slate-600 mt-0.5">🚪 Pintu, Papan tulis</div>
+              </div>
+              <div class="bg-blue-50 rounded-xl p-2 border border-blue-200">
+                <div class="w-16 h-16 mx-auto" data-mini-shape="balok"></div>
+                <div class="font-kid font-bold text-blue-900 text-sm mt-1">Balok</div>
+                <div class="text-[11px] font-bold text-blue-700">Bangun Ruang (3D)</div>
+                <div class="text-[11px] text-slate-600 mt-0.5">📦 Kotak sepatu</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bar Filter & Progres Eksplorasi -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white/90 border-2 border-sky-200 rounded-2xl p-3.5">
+        <div class="flex flex-wrap items-center justify-center gap-2">
+          <button onclick="filterShapes('all')" id="filter-all" class="shape-filter-btn candy-btn px-4 py-2 text-sm sm:text-base font-bold border-2">
+            ✨ Semua (11)
+          </button>
+          <button onclick="filterShapes('2d')" id="filter-2d" class="shape-filter-btn candy-btn px-4 py-2 text-sm sm:text-base font-bold border-2">
+            🟦 Bangun Datar - 2D (6)
+          </button>
+          <button onclick="filterShapes('3d')" id="filter-3d" class="shape-filter-btn candy-btn px-4 py-2 text-sm sm:text-base font-bold border-2">
+            🧊 Bangun Ruang - 3D (5)
+          </button>
+        </div>
+        <div class="text-sm font-extrabold text-sky-800 bg-sky-100 px-3.5 py-1.5 rounded-full">
+          🔍 Sudah Kenalan: <span id="exploredCounterText">0 / 11</span> Bentuk
+        </div>
+      </div>
+
+      <!-- Petunjuk Klik -->
+      <p class="text-center text-slate-600 font-bold text-sm sm:text-base">
+        👆 Klik salah satu kartu bentuk lucu di bawah untuk mendengar suaranya, menghitung sudutnya, dan mendapat <strong>+1 ⭐ Bintang!</strong>
+      </p>
+
+      <!-- Grid Kartu Bentuk -->
+      <div id="shapesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- TAB 2: PASANGKAN & KELOMPOKKAN (LKPD BAGIAN A, B, C, D)   -->
+    <!-- ========================================================= -->
+    <section id="tab-pasangkan" class="tab-panel hidden space-y-6">
+
+      <!-- Pilihan Sub-Permainan -->
+      <div class="bg-white border-3 border-sky-200 rounded-3xl p-3 sm:p-4 shadow-sm flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button onclick="switchSubGame('match')" id="subGameBtn-match" class="candy-btn w-full sm:w-auto px-5 py-3 text-base font-bold border-2 flex items-center justify-center gap-2">
+          <span class="text-xl">🧺</span>
+          <span>A. Pasangkan Benda di Sekitarmu</span>
+        </button>
+        <button onclick="switchSubGame('count')" id="subGameBtn-count" class="candy-btn w-full sm:w-auto px-5 py-3 text-base font-bold border-2 flex items-center justify-center gap-2">
+          <span class="text-xl">🔢</span>
+          <span>B. Ayo Berhitung Bangun Ruang!</span>
+        </button>
+      </div>
+
+      <!-- SUB-GAME A: COCOKKAN BENDA SEHARI-HARI -->
+      <div id="subGame-match" class="space-y-5">
+        <div class="candy-card border-pink-300 bg-gradient-to-r from-pink-50 via-rose-50 to-amber-50 p-4 sm:p-6">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <span class="inline-block bg-pink-200 text-pink-900 text-xs font-black px-3 py-1 rounded-full mb-1">
+                LKPD Bagian A &amp; C • Mengelompokkan Benda
+              </span>
+              <h2 class="text-xl sm:text-2xl font-bold text-pink-950">
+                Cocokkan Benda dengan Bentuknya! 🎯
+              </h2>
+              <p class="text-sm sm:text-base font-semibold text-slate-700 mt-1">
+                <strong>Cara Main:</strong> Ketuk 1 gambar <strong>Benda</strong> di sebelah kiri, lalu ketuk kotak <strong>Nama Bentuk</strong> yang tepat di sebelah kanan!
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 shrink-0">
+              <button onclick="selectMatchRound(0)" id="roundBtn-0" class="match-round-btn candy-btn px-3.5 py-2 text-xs sm:text-sm font-bold border-2">Ronde 1</button>
+              <button onclick="selectMatchRound(1)" id="roundBtn-1" class="match-round-btn candy-btn px-3.5 py-2 text-xs sm:text-sm font-bold border-2">Ronde 2</button>
+              <button onclick="selectMatchRound(2)" id="roundBtn-2" class="match-round-btn candy-btn px-3.5 py-2 text-xs sm:text-sm font-bold border-2">Ronde 3</button>
+              <button onclick="resetCurrentMatchRound()" class="candy-btn bg-white border-2 border-slate-300 border-b-slate-400 text-slate-700 px-3 py-2 text-xs sm:text-sm font-bold">
+                🔄 Ulang
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Pilihan Aktif -->
+        <div id="matchHintBanner" class="bg-sky-100 border-2 border-sky-300 text-sky-950 rounded-2xl px-4 py-3 text-center font-bold text-sm sm:text-base">
+          👆 Pilih salah satu <strong>Benda</strong> di bawah ini dulu ya!
+        </div>
+
+        <!-- Arena Pasangkan -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          <!-- Kolom Benda -->
+          <div class="candy-card border-sky-300 p-4 sm:p-5">
+            <h3 class="text-lg font-bold text-sky-900 mb-3 flex items-center gap-2">
+              <span>🎒</span> <span>Daftar Benda Sehari-hari</span>
+            </h3>
+            <div id="matchObjectsList" class="grid grid-cols-1 gap-3"></div>
+          </div>
+
+          <!-- Kolom Bentuk -->
+          <div class="candy-card border-emerald-300 p-4 sm:p-5">
+            <h3 class="text-lg font-bold text-emerald-900 mb-3 flex items-center gap-2">
+              <span>🧊</span> <span>Pilih Bentuknya yang Tepat!</span>
+            </h3>
+            <div id="matchTargetsList" class="grid grid-cols-1 gap-3"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUB-GAME B: AYO BERHITUNG BANGUN RUANG (LKPD BAGIAN D) -->
+      <div id="subGame-count" class="hidden space-y-6">
+        <div class="candy-card border-purple-300 bg-gradient-to-b from-purple-50 to-white p-4 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <span class="inline-block bg-purple-200 text-purple-900 text-xs font-black px-3 py-1 rounded-full mb-1">
+                LKPD Bagian D • Ayo Berhitung &amp; Amati!
+              </span>
+              <h2 class="text-xl sm:text-2xl font-bold text-purple-950">
+                Perhatikan Barisan 5 Sahabat Bangun Ruang! 👀
+              </h2>
+              <p class="text-sm font-semibold text-slate-600">
+                Ketuk gambar karakter di bawah untuk menyapa mereka, lalu jawab 4 pertanyaannya!
+              </p>
+            </div>
+            <button onclick="resetCountingGame()" class="candy-btn bg-purple-100 border-2 border-purple-300 border-b-purple-400 text-purple-900 px-3.5 py-2 text-sm font-bold self-start">
+              🔄 Jawab Ulang
+            </button>
+          </div>
+
+          <!-- Panggung 5 Karakter Bangun Ruang Kawaii (Persis LKPD D: Kubus Pink, Bola Biru, Tabung Kuning, Kerucut Ungu, Balok Hijau) -->
+          <div id="countingStage" class="bg-gradient-to-b from-sky-50 via-white to-amber-50 border-3 border-purple-200 rounded-3xl p-4 sm:p-6 grid grid-cols-2 sm:grid-cols-5 gap-4 items-end justify-items-center">
+            <!-- Dirender oleh JS agar interaktif & bisa melompat -->
+          </div>
+        </div>
+
+        <!-- 4 Pertanyaan Interaktif LKPD Bagian D -->
+        <div id="countingQuestionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- TAB 3: KUIS & SOAL CERITA (LATIHAN SOAL KELAS 2 SD)       -->
+    <!-- ========================================================= -->
+    <section id="tab-kuis" class="tab-panel hidden space-y-6">
+
+      <!-- Pilihan Mode Kuis -->
+      <div class="candy-card border-indigo-300 bg-gradient-to-r from-indigo-50 via-sky-50 to-emerald-50 p-4 sm:p-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+          <div>
+            <span class="inline-block bg-indigo-200 text-indigo-900 text-xs font-black px-3 py-1 rounded-full mb-1">
+              Latihan Soal &amp; Soal Cerita Bergambar
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold text-indigo-950">
+              Tantangan Kuis Cerdas Kelas 2 SD 🧠✨
+            </h2>
+          </div>
+          <div class="text-sm font-extrabold bg-white border-2 border-indigo-200 text-indigo-900 px-3.5 py-1.5 rounded-full self-start md:self-center">
+            🏆 Skor Terbaik: <span id="bestQuizScoreBadge">0</span>%
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
+          <button onclick="startQuiz('campuran')" id="quizCat-campuran" class="quiz-cat-btn candy-btn px-3 py-3 text-sm font-bold border-2 flex flex-col items-center gap-1">
+            <span class="text-2xl">🌟</span>
+            <span>Campuran Seru</span>
+            <span class="text-[11px] opacity-80">12 Soal Pilihan</span>
+          </button>
+          <button onclick="startQuiz('datar')" id="quizCat-datar" class="quiz-cat-btn candy-btn px-3 py-3 text-sm font-bold border-2 flex flex-col items-center gap-1">
+            <span class="text-2xl">🟦</span>
+            <span>Bangun Datar</span>
+            <span class="text-[11px] opacity-80">Latihan 2D</span>
+          </button>
+          <button onclick="startQuiz('ruang')" id="quizCat-ruang" class="quiz-cat-btn candy-btn px-3 py-3 text-sm font-bold border-2 flex flex-col items-center gap-1">
+            <span class="text-2xl">🧊</span>
+            <span>Bangun Ruang</span>
+            <span class="text-[11px] opacity-80">Latihan 3D</span>
+          </button>
+          <button onclick="startQuiz('cerita')" id="quizCat-cerita" class="quiz-cat-btn candy-btn px-3 py-3 text-sm font-bold border-2 flex flex-col items-center gap-1">
+            <span class="text-2xl">📖</span>
+            <span>Soal Cerita</span>
+            <span class="text-[11px] opacity-80">Cerita Bergambar</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Kotak Soal Aktif -->
+      <div id="quizPlayCard" class="candy-card border-sky-300 p-4 sm:p-7">
+        <!-- Bar Progres & Streak -->
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div class="text-sm sm:text-base font-extrabold text-sky-900">
+            Soal <span id="quizCurrentNum">1</span> dari <span id="quizTotalNum">12</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="quizStreakBadge" class="hidden bg-orange-100 text-orange-800 border border-orange-300 text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full">
+              🔥 Benar Beruntun: 2x!
+            </span>
+            <button onclick="speakCurrentQuizQuestion()" class="candy-btn bg-sky-400 hover:bg-sky-500 border-2 border-sky-600 border-b-sky-700 text-white px-3.5 py-1.5 text-xs sm:text-sm font-bold flex items-center gap-1.5">
+              <span>🔊</span> <span>Bacakan Soal</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Progress Bar Visual -->
+        <div class="w-full h-3.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200 mb-6">
+          <div id="quizProgressBar" class="h-full bg-gradient-to-r from-sky-400 to-emerald-400 rounded-full transition-all duration-300" style="width: 10%"></div>
+        </div>
+
+        <!-- Ilustrasi SVG Soal + Teks Pertanyaan -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center mb-6">
+          <div id="quizIllustrationBox" class="md:col-span-4 bg-gradient-to-br from-sky-50 via-white to-amber-50 border-2 border-sky-200 rounded-3xl p-4 flex items-center justify-center min-h-[165px]">
+            <!-- SVG Ilustrasi Soal -->
+          </div>
+          <div class="md:col-span-8">
+            <span id="quizTopicTag" class="inline-block bg-amber-100 text-amber-900 text-xs font-black px-3 py-1 rounded-full mb-2">
+              Bangun Datar
+            </span>
+            <h3 id="quizQuestionText" class="text-lg sm:text-2xl font-bold text-slate-800 leading-snug">
+              Memuat soal...
+            </h3>
+          </div>
+        </div>
+
+        <!-- Pilihan Jawaban A B C D -->
+        <div id="quizOptionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
+
+        <!-- Kotak Penjelasan Setelah Menjawab -->
+        <div id="quizFeedbackBox" class="hidden mt-5 rounded-2xl p-4 sm:p-5 border-2">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div id="quizFeedbackTitle" class="font-kid text-lg sm:text-xl font-bold mb-1"></div>
+              <p id="quizFeedbackDesc" class="text-sm sm:text-base font-semibold"></p>
+            </div>
+            <button onclick="nextQuizQuestion()" id="quizNextBtn" class="candy-btn bg-sky-500 hover:bg-sky-600 border-2 border-sky-700 border-b-sky-800 text-white px-6 py-3 text-base font-bold shrink-0">
+              Soal Berikutnya ➡️
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layar Hasil Akhir Kuis -->
+      <div id="quizResultCard" class="hidden candy-card border-amber-400 bg-gradient-to-b from-amber-50 to-white p-6 sm:p-8 text-center space-y-5">
+        <div class="text-6xl animate-bounce">🏆</div>
+        <h3 id="quizResultTitle" class="text-2xl sm:text-3xl font-bold text-amber-950">Luar Biasa! Kuis Selesai!</h3>
+        <p id="quizResultSubtitle" class="text-base sm:text-lg font-bold text-slate-700"></p>
+        <div class="inline-flex flex-wrap items-center justify-center gap-4 bg-white border-2 border-amber-300 rounded-2xl px-6 py-4 shadow-sm">
+          <div>
+            <div class="text-xs font-extrabold uppercase text-slate-500">Jawaban Benar</div>
+            <div id="quizScoreSummary" class="font-kid text-2xl font-bold text-emerald-600">10 / 12</div>
+          </div>
+          <div class="w-px h-10 bg-slate-200"></div>
+          <div>
+            <div class="text-xs font-extrabold uppercase text-slate-500">Nilai Kamu</div>
+            <div id="quizPercentSummary" class="font-kid text-2xl font-bold text-sky-600">100</div>
+          </div>
+          <div class="w-px h-10 bg-slate-200"></div>
+          <div>
+            <div class="text-xs font-extrabold uppercase text-slate-500">Hadiah Bintang</div>
+            <div id="quizStarsEarnedSummary" class="font-kid text-2xl font-bold text-amber-500">+15 ⭐</div>
+          </div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-3 pt-2">
+          <button onclick="restartSameQuiz()" class="candy-btn bg-emerald-500 border-2 border-emerald-700 border-b-emerald-800 text-white px-6 py-3 text-base font-bold">
+            🔄 Mainkan Lagi
+          </button>
+          <button onclick="switchTab('rapor')" class="candy-btn bg-amber-400 border-2 border-amber-600 border-b-amber-700 text-amber-950 px-6 py-3 text-base font-bold">
+            🏅 Lihat Rapor &amp; Sertifikat
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- TAB 4: AYO MENGGAMBAR (LKPD BAGIAN E - TRACING & STUDIO)  -->
+    <!-- ========================================================= -->
+    <section id="tab-gambar" class="tab-panel hidden space-y-5">
+
+      <!-- Header Tantangan Menggambar -->
+      <div class="candy-card border-emerald-300 bg-gradient-to-r from-emerald-50 via-teal-50 to-sky-50 p-4 sm:p-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+          <div>
+            <span class="inline-block bg-emerald-200 text-emerald-900 text-xs font-black px-3 py-1 rounded-full mb-1">
+              LKPD Bagian E • Ayo Menggambar Bentuk!
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold text-emerald-950">
+              Studio Menggambar &amp; Menebalkan Garis 🎨
+            </h2>
+            <p class="text-sm font-semibold text-slate-700">
+              Pilih tantangan gambar di bawah, ikuti <strong>garis bantu titik-titik</strong>, lalu warnai dan hias sesukamu!
+            </p>
+          </div>
+          <button onclick="toggleGuideLines()" id="guideToggleBtn" class="candy-btn bg-amber-300 border-2 border-amber-500 border-b-amber-600 text-amber-950 px-4 py-2.5 text-sm font-bold shrink-0 self-start md:self-center">
+            👁️ Garis Bantu: Aktif
+          </button>
+        </div>
+
+        <!-- Tombol Pilihan Tantangan -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+          <button onclick="selectDrawChallenge('bola')" id="drawChal-bola" class="draw-chal-btn candy-btn px-3 py-2.5 text-xs sm:text-sm font-bold border-2">
+            ⚽ 1. Bola Sepak
+          </button>
+          <button onclick="selectDrawChallenge('dadu')" id="drawChal-dadu" class="draw-chal-btn candy-btn px-3 py-2.5 text-xs sm:text-sm font-bold border-2">
+            🎲 2. Dadu Kubus
+          </button>
+          <button onclick="selectDrawChallenge('kaleng')" id="drawChal-kaleng" class="draw-chal-btn candy-btn px-3 py-2.5 text-xs sm:text-sm font-bold border-2">
+            🥫 3. Kaleng Susu
+          </button>
+          <button onclick="selectDrawChallenge('topi')" id="drawChal-topi" class="draw-chal-btn candy-btn px-3 py-2.5 text-xs sm:text-sm font-bold border-2">
+            🎉 4. Topi Kerucut
+          </button>
+          <button onclick="selectDrawChallenge('rumah')" id="drawChal-rumah" class="draw-chal-btn candy-btn px-3 py-2.5 text-xs sm:text-sm font-bold border-2">
+            🏠 5. Rumah Bentuk
+          </button>
+          <button onclick="selectDrawChallenge('bebas')" id="drawChal-bebas" class="draw-chal-btn candy-btn px-3 py-2.5 text-xs sm:text-sm font-bold border-2">
+            🌈 6. Kanvas Bebas
+          </button>
+        </div>
+      </div>
+
+      <!-- Toolbar Alat Gambar & Warna -->
+      <div class="candy-card border-sky-300 p-3.5 sm:p-4 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          
+          <!-- Palet 8 Warna Cerah -->
+          <div class="flex flex-wrap items-center gap-2" id="colorPalette">
+            <!-- Dirender oleh JS -->
+          </div>
+
+          <!-- Ukuran Kuas -->
+          <div class="flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
+            <button onclick="setBrushSize(4)" id="sizeBtn-4" class="brush-size-btn px-2.5 py-1.5 rounded-xl text-xs font-extrabold">Tipis</button>
+            <button onclick="setBrushSize(9)" id="sizeBtn-9" class="brush-size-btn px-2.5 py-1.5 rounded-xl text-xs font-extrabold">Sedang</button>
+            <button onclick="setBrushSize(16)" id="sizeBtn-16" class="brush-size-btn px-2.5 py-1.5 rounded-xl text-xs font-extrabold">Tebal</button>
+          </div>
+
+          <!-- Alat Kuas / Hapus / Stempel / Undo -->
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="setDrawTool('brush')" id="toolBtn-brush" class="candy-btn px-3 py-2 text-xs sm:text-sm font-bold border-2">
+              🖌️ Kuas
+            </button>
+            <button onclick="setDrawTool('eraser')" id="toolBtn-eraser" class="candy-btn px-3 py-2 text-xs sm:text-sm font-bold border-2">
+              🧽 Penghapus
+            </button>
+            <button onclick="undoStroke()" class="candy-btn bg-white border-2 border-slate-300 border-b-slate-400 text-slate-700 px-3 py-2 text-xs sm:text-sm font-bold">
+              ↩️ Batal
+            </button>
+            <button onclick="clearUserCanvas()" class="candy-btn bg-rose-100 border-2 border-rose-300 border-b-rose-400 text-rose-800 px-3 py-2 text-xs sm:text-sm font-bold">
+              🗑️ Bersihkan
+            </button>
+          </div>
+        </div>
+
+        <!-- Bar Stempel Stiker Lucu -->
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-xs sm:text-sm font-extrabold text-slate-600 mr-1">✨ Stempel Stiker:</span>
+            <button onclick="selectSticker('⭐')" id="stickerBtn-⭐" class="sticker-btn px-2.5 py-1 rounded-xl border-2 border-slate-200 text-lg hover:bg-amber-50">⭐</button>
+            <button onclick="selectSticker('❤️')" id="stickerBtn-❤️" class="sticker-btn px-2.5 py-1 rounded-xl border-2 border-slate-200 text-lg hover:bg-rose-50">❤️</button>
+            <button onclick="selectSticker('😊')" id="stickerBtn-😊" class="sticker-btn px-2.5 py-1 rounded-xl border-2 border-slate-200 text-lg hover:bg-yellow-50">😊</button>
+            <button onclick="selectSticker('✨')" id="stickerBtn-✨" class="sticker-btn px-2.5 py-1 rounded-xl border-2 border-slate-200 text-lg hover:bg-sky-50">✨</button>
+            <button onclick="selectSticker('🌈')" id="stickerBtn-🌈" class="sticker-btn px-2.5 py-1 rounded-xl border-2 border-slate-200 text-lg hover:bg-purple-50">🌈</button>
+          </div>
+          <div id="drawChallengeInstruction" class="text-xs sm:text-sm font-extrabold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full">
+            Petunjuk: Tebalkan lingkaran bola sepak lalu warnai!
+          </div>
+        </div>
+      </div>
+
+      <!-- Area Kanvas Dua Lapis (Layer 1: Garis Bantu, Layer 2: Gambar Anak) -->
+      <div id="drawingHolder" class="w-full h-[360px] sm:h-[440px] rounded-3xl border-4 border-sky-300 shadow-inner overflow-hidden cursor-crosshair">
+        <canvas id="guideCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+        <canvas id="userCanvas" class="absolute inset-0 w-full h-full"></canvas>
+      </div>
+
+      <!-- Tombol Simpan & Selesai -->
+      <div class="flex flex-wrap items-center justify-center sm:justify-between gap-3">
+        <button onclick="downloadDrawingPNG()" class="candy-btn bg-sky-500 hover:bg-sky-600 border-2 border-sky-700 border-b-sky-800 text-white px-5 py-3 text-sm sm:text-base font-bold flex items-center gap-2">
+          <span>💾</span> <span>Simpan Gambar (PNG)</span>
+        </button>
+        <button onclick="completeDrawingReward()" class="candy-btn bg-emerald-500 hover:bg-emerald-600 border-2 border-emerald-700 border-b-emerald-800 text-white px-6 py-3 text-sm sm:text-base font-bold flex items-center gap-2">
+          <span>✅</span> <span>Selesai Menggambar (+5 ⭐)</span>
+        </button>
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- TAB 5: RAPOR & REFLEKSI (REFLEKSI LKPD & SERTIFIKAT)      -->
+    <!-- ========================================================= -->
+    <section id="tab-rapor" class="tab-panel hidden space-y-6">
+
+      <!-- Bagian Refleksi Belajar (Dari Bagian Bawah LKPD) -->
+      <div class="candy-card border-purple-300 bg-gradient-to-r from-purple-50 via-pink-50 to-amber-50 p-5 sm:p-6 no-print">
+        <span class="inline-block bg-purple-200 text-purple-900 text-xs font-black px-3 py-1 rounded-full mb-1">
+          Refleksi Belajar Hari Ini
+        </span>
+        <h2 class="text-xl sm:text-2xl font-bold text-purple-950 mb-1">
+          Bagaimana perasaanmu setelah belajar bangun datar &amp; bangun ruang? 💬
+        </h2>
+        <p class="text-sm font-semibold text-slate-600 mb-4">
+          Pilih salah satu wajah ekspresi yang paling menggambarkan perasaanmu hari ini ya!
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <button onclick="selectReflection('senang')" id="reflBtn-senang" class="refl-card candy-card candy-card-interactive p-4 text-center flex flex-col items-center gap-2">
+            <span class="text-5xl">😄</span>
+            <span class="font-kid text-lg font-bold text-emerald-800">Senang Sekali!</span>
+            <span class="text-xs sm:text-sm font-semibold text-slate-600">Aku makin paham bentuk &amp; ruang!</span>
+          </button>
+          <button onclick="selectReflection('biasa')" id="reflBtn-biasa" class="refl-card candy-card candy-card-interactive p-4 text-center flex flex-col items-center gap-2">
+            <span class="text-5xl">🙂</span>
+            <span class="font-kid text-lg font-bold text-amber-800">Biasa Saja</span>
+            <span class="text-xs sm:text-sm font-semibold text-slate-600">Cukup seru, mau latihan lagi!</span>
+          </button>
+          <button onclick="selectReflection('bingung')" id="reflBtn-bingung" class="refl-card candy-card candy-card-interactive p-4 text-center flex flex-col items-center gap-2">
+            <span class="text-5xl">🤔</span>
+            <span class="font-kid text-lg font-bold text-sky-800">Masih Bingung</span>
+            <span class="text-xs sm:text-sm font-semibold text-slate-600">Ayo kita pelajari pelan-pelan lagi!</span>
+          </button>
+        </div>
+
+        <div id="reflectionResponseBox" class="hidden mt-4 bg-white border-2 border-purple-200 rounded-2xl p-4 text-center font-bold text-purple-950 text-sm sm:text-base"></div>
+      </div>
+
+      <!-- Koleksi Lencana Prestasi -->
+      <div class="candy-card border-sky-300 p-5 sm:p-6 no-print">
+        <h3 class="text-xl font-bold text-sky-950 mb-4 flex items-center gap-2">
+          <span>🎖️</span> <span>Koleksi Lencana Petualang Geometri</span>
+        </h3>
+        <div id="badgesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+      </div>
+
+      <!-- SERTIFIKAT BINTANG GEOMETRI KELAS 2 SD -->
+      <div id="certificatePrintArea" class="bg-gradient-to-br from-amber-50 via-white to-sky-50 border-8 border-double border-amber-400 rounded-3xl p-6 sm:p-10 shadow-xl text-center relative overflow-hidden">
+        <!-- Sudut Dekoratif Sertifikat -->
+        <div class="text-3xl sm:text-4xl mb-2">🌟 👑 🌟</div>
+        <div class="inline-block bg-amber-200 text-amber-950 text-xs sm:text-sm font-black uppercase tracking-widest px-4 py-1 rounded-full mb-2">
+          Piagam Penghargaan Matematika Kelas 2 SD
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-bold text-sky-950 mt-1">
+          SERTIFIKAT BINTANG GEOMETRI
+        </h2>
+        <p class="text-sm sm:text-base font-bold text-slate-600 mt-2">
+          Diberikan dengan bangga kepada anak hebat:
+        </p>
+
+        <div id="certStudentName" class="font-kid text-3xl sm:text-5xl font-bold text-pink-600 my-3 underline decoration-wavy decoration-amber-400 underline-offset-8">
+          Teman Hebat
+        </div>
+        <div id="certStudentClass" class="text-base sm:text-lg font-extrabold text-sky-800 mb-5">
+          Kelas 2 SD
+        </div>
+
+        <p class="max-w-xl mx-auto text-sm sm:text-base font-semibold text-slate-700 mb-6">
+          Telah semangat belajar mengenal <strong>Bangun Datar (2D)</strong> dan <strong>Bangun Ruang (3D)</strong>, mencocokkan benda di sekitar, mengerjakan soal cerita, serta berkreasi menggambar bentuk!
+        </p>
+
+        <!-- Ringkasan Statistik di Sertifikat -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto mb-6">
+          <div class="bg-white border-2 border-amber-300 rounded-2xl p-3">
+            <div class="text-2xl">⭐</div>
+            <div id="certStars" class="font-kid text-xl font-bold text-amber-700">0</div>
+            <div class="text-xs font-extrabold text-slate-500">Total Bintang</div>
+          </div>
+          <div class="bg-white border-2 border-sky-300 rounded-2xl p-3">
+            <div class="text-2xl">🎨</div>
+            <div id="certExplored" class="font-kid text-xl font-bold text-sky-700">0 / 11</div>
+            <div class="text-xs font-extrabold text-slate-500">Bentuk Dikenali</div>
+          </div>
+          <div class="bg-white border-2 border-emerald-300 rounded-2xl p-3">
+            <div class="text-2xl">🧩</div>
+            <div id="certQuizBest" class="font-kid text-xl font-bold text-emerald-700">0%</div>
+            <div class="text-xs font-extrabold text-slate-500">Skor Kuis Terbaik</div>
+          </div>
+          <div class="bg-white border-2 border-pink-300 rounded-2xl p-3">
+            <div class="text-2xl">✏️</div>
+            <div id="certDrawings" class="font-kid text-xl font-bold text-pink-700">0</div>
+            <div class="text-xs font-extrabold text-slate-500">Karya Gambar</div>
+          </div>
+        </div>
+
+        <div class="text-xs sm:text-sm font-extrabold text-slate-500">
+          📅 Tanggal Belajar: <span id="certDateText"></span>
+        </div>
+      </div>
+
+      <!-- Tombol Aksi Sertifikat & Reset Progres -->
+      <div class="flex flex-wrap items-center justify-between gap-3 no-print">
+        <button onclick="window.print()" class="candy-btn bg-amber-400 hover:bg-amber-500 border-2 border-amber-600 border-b-amber-700 text-amber-950 px-5 py-3 text-sm sm:text-base font-bold flex items-center gap-2">
+          <span>🖨️</span> <span>Cetak / Simpan Sertifikat</span>
+        </button>
+        <button onclick="openResetModal()" class="candy-btn bg-rose-100 hover:bg-rose-200 border-2 border-rose-300 border-b-rose-400 text-rose-800 px-4 py-2.5 text-xs sm:text-sm font-bold">
+          🔄 Atur Ulang Progres Belajar
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER CERIA ================= -->
+  <footer class="text-center py-5 text-xs sm:text-sm font-bold text-slate-500 no-print">
+    🌈 Dunia Bentuk &amp; Ruang Ceria • Media Belajar Interaktif Matematika Kelas 2 SD
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const themeBtn = document.getElementById("themeToggle");
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "light") {
-      document.documentElement.setAttribute("data-theme", "light");
+  <!-- ========================================================= -->
+  <!-- MODAL 1: DETAIL SPOTLIGHT BENTUK (TAB 1)                  -->
+  <!-- ========================================================= -->
+  <div id="shapeModal" class="fixed inset-0 z-40 hidden bg-slate-900/55 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5">
+    <div class="bg-white border-4 border-sky-300 border-b-8 rounded-3xl max-w-xl w-full p-5 sm:p-7 shadow-2xl relative max-h-[92vh] overflow-y-auto animate-pop">
+      <button onclick="closeShapeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-700 font-black text-lg flex items-center justify-center" aria-label="Tutup">
+        ✕
+      </button>
+
+      <div id="modalShapeBadge" class="inline-block text-xs font-black px-3 py-1 rounded-full mb-2"></div>
+      <h3 id="modalShapeTitle" class="text-2xl sm:text-3xl font-bold text-slate-800"></h3>
+
+      <!-- Ilustrasi Besar dengan Highlight Sudut Opsional -->
+      <div class="my-4 bg-gradient-to-b from-sky-50 to-amber-50 border-2 border-sky-200 rounded-3xl p-5 flex flex-col items-center">
+        <div id="modalShapeSVG" class="w-40 h-40 sm:w-44 sm:h-44 flex items-center justify-center"></div>
+        <div class="mt-3 flex flex-wrap justify-center gap-2">
+          <button onclick="speakActiveModalShape()" class="candy-btn bg-sky-500 hover:bg-sky-600 border-2 border-sky-700 border-b-sky-800 text-white px-4 py-2 text-sm font-bold flex items-center gap-1.5">
+            <span>🔊</span> <span>Bacakan Penjelasan</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Kotak Ciri-Ciri Sisi & Sudut -->
+      <div id="modalShapeStats" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-4"></div>
+
+      <p id="modalShapeDesc" class="text-sm sm:text-base font-bold text-slate-700 bg-amber-50 border border-amber-200 rounded-2xl p-3.5 mb-4"></p>
+
+      <!-- Contoh Benda di Sekitar Kita -->
+      <div>
+        <div class="text-xs sm:text-sm font-black uppercase tracking-wider text-slate-500 mb-2">
+          🏠 Contoh Benda di Sekitar Kita:
+        </div>
+        <div id="modalShapeExamples" class="grid grid-cols-2 gap-2.5"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- MODAL 2: UBAH NAMA & KELAS SISWA                          -->
+  <!-- ========================================================= -->
+  <div id="studentModal" class="fixed inset-0 z-40 hidden bg-slate-900/55 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white border-4 border-sky-300 border-b-8 rounded-3xl max-w-md w-full p-6 shadow-2xl animate-pop">
+      <div class="text-center mb-4">
+        <div class="text-4xl mb-1">🎒✨</div>
+        <h3 class="text-2xl font-bold text-sky-950">Kartu Nama Petualang</h3>
+        <p class="text-sm font-semibold text-slate-600">Tulis namamu agar muncul di Sertifikat Bintang!</p>
+      </div>
+      <div class="space-y-4">
+        <div>
+          <label for="inputStudentName" class="block text-sm font-extrabold text-slate-700 mb-1">Nama Lengkap / Panggilan:</label>
+          <input id="inputStudentName" type="text" maxlength="32" placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-2xl border-2 border-sky-300 focus:border-sky-500 outline-none font-bold text-slate-800 text-base" />
+        </div>
+        <div>
+          <label for="inputStudentClass" class="block text-sm font-extrabold text-slate-700 mb-1">Kelas:</label>
+          <input id="inputStudentClass" type="text" maxlength="20" placeholder="Contoh: Kelas 2A SD" class="w-full px-4 py-3 rounded-2xl border-2 border-sky-300 focus:border-sky-500 outline-none font-bold text-slate-800 text-base" />
+        </div>
+        <div class="flex gap-2.5 pt-2">
+          <button onclick="closeStudentModal()" class="candy-btn flex-1 bg-slate-100 border-2 border-slate-300 border-b-slate-400 text-slate-700 py-2.5 font-bold">
+            Batal
+          </button>
+          <button onclick="saveStudentProfile()" class="candy-btn flex-1 bg-emerald-500 border-2 border-emerald-700 border-b-emerald-800 text-white py-2.5 font-bold">
+            ✅ Simpan Nama
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- MODAL 3: KONFIRMASI RESET PROGRES (TANPA confirm())       -->
+  <!-- ========================================================= -->
+  <div id="resetModal" class="fixed inset-0 z-40 hidden bg-slate-900/55 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white border-4 border-rose-300 border-b-8 rounded-3xl max-w-md w-full p-6 shadow-2xl text-center animate-pop">
+      <div class="text-5xl mb-2">🔄</div>
+      <h3 class="text-2xl font-bold text-rose-950 mb-2">Mulai Petualangan dari Awal?</h3>
+      <p class="text-sm sm:text-base font-semibold text-slate-600 mb-5">
+        Jumlah bintang, lencana, dan skor kuis akan diatur ulang menjadi 0 agar kamu atau teman lain bisa mencoba dari awal lagi.
+      </p>
+      <div class="flex gap-3">
+        <button onclick="closeResetModal()" class="candy-btn flex-1 bg-slate-100 border-2 border-slate-300 border-b-slate-400 text-slate-700 py-3 font-bold">
+          Tidak Jadi
+        </button>
+        <button onclick="confirmResetProgress()" class="candy-btn flex-1 bg-rose-500 border-2 border-rose-700 border-b-rose-800 text-white py-3 font-bold">
+          Ya, Atur Ulang
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- JAVASCRIPT UTAMA APLIKASI                                 -->
+  <!-- ========================================================= -->
+  <script>
+    /* -----------------------------------------------------------
+     * 1. STATE & PENYIMPANAN LOKAL (LOCALSTORAGE)
+     * ----------------------------------------------------------- */
+    const STORAGE_KEY = 'petualangan_bentuk_ruang_kelas2_v1';
+
+    const defaultState = {
+      studentName: 'Teman Hebat',
+      studentClass: 'Kelas 2 SD',
+      stars: 0,
+      soundEnabled: true,
+      exploredShapes: [],
+      matchingRoundsDone: 0,
+      countingDone: false,
+      quizBestScore: 0,
+      drawingsDone: 0,
+      reflection: null
+    };
+
+    let state = loadState();
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return { ...defaultState };
+        const parsed = JSON.parse(raw);
+        return {
+          ...defaultState,
+          ...parsed,
+          exploredShapes: Array.isArray(parsed.exploredShapes) ? parsed.exploredShapes : []
+        };
+      } catch (e) {
+        return { ...defaultState };
+      }
     }
 
-    themeBtn.addEventListener("click", () => {
-      const isLight = document.documentElement.getAttribute("data-theme") === "light";
-      if (isLight) {
-        document.documentElement.removeAttribute("data-theme");
-        localStorage.setItem("theme", "dark");
-      } else {
-        document.documentElement.setAttribute("data-theme", "light");
-        localStorage.setItem("theme", "light");
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        // Abaikan jika mode privat membatasi penyimpanan
       }
-    });
+      refreshHeaderUI();
+    }
 
-    const searchInput = document.getElementById("searchInput");
-    const cards = document.querySelectorAll(".card");
 
-    searchInput.addEventListener("input", (e) => {
-      const keyword = e.target.value.toLowerCase();
-      cards.forEach((card) => {
-        const match = card.textContent.toLowerCase().includes(keyword);
-        card.style.display = match ? "flex" : "none";
+    /* -----------------------------------------------------------
+     * 2. EFEK SUARA (WEB AUDIO API) & PEMBACA SUARA BAHASA INDONESIA
+     * ----------------------------------------------------------- */
+    let audioCtx = null;
+
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) audioCtx = new AudioContextClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, duration = 0.12, type = 'sine', delay = 0, volume = 0.14) {
+      if (!state.soundEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + delay);
+        gain.gain.setValueAtTime(volume, ctx.currentTime + delay);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + delay);
+        osc.stop(ctx.currentTime + delay + duration);
+      } catch (e) {}
+    }
+
+    function playPopSound() {
+      playTone(520, 0.09, 'triangle', 0, 0.12);
+      playTone(680, 0.08, 'sine', 0.04, 0.1);
+    }
+
+    function playSuccessSound() {
+      playTone(523.25, 0.12, 'triangle', 0, 0.15);    // C5
+      playTone(659.25, 0.12, 'triangle', 0.09, 0.15); // E5
+      playTone(783.99, 0.18, 'triangle', 0.18, 0.16); // G5
+      playTone(1046.5, 0.28, 'sine', 0.27, 0.16);     // C6
+    }
+
+    function playGentleOopsSound() {
+      playTone(330, 0.15, 'sine', 0, 0.12);
+      playTone(262, 0.22, 'sine', 0.12, 0.12);
+    }
+
+    function playFanfareSound() {
+      const notes = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5];
+      const times = [0, 0.1, 0.2, 0.3, 0.45, 0.58];
+      notes.forEach((n, idx) => playTone(n, 0.22, 'triangle', times[idx], 0.16));
+    }
+
+    function speakIndonesian(text) {
+      if (!state.soundEnabled) return;
+      if (!('speechSynthesis' in window)) return;
+      try {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'id-ID';
+        utter.rate = 0.95;
+        utter.pitch = 1.08;
+        const voices = window.speechSynthesis.getVoices();
+        const idVoice = voices.find(v => v.lang && v.lang.toLowerCase().includes('id'));
+        if (idVoice) utter.voice = idVoice;
+        window.speechSynthesis.speak(utter);
+      } catch (e) {}
+    }
+
+    function toggleSound() {
+      state.soundEnabled = !state.soundEnabled;
+      if (!state.soundEnabled && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      } else {
+        playPopSound();
+      }
+      saveState();
+      showToast(state.soundEnabled ? '🔊 Suara dan Pembaca Soal Aktif!' : '🔇 Suara Dibisukan');
+    }
+
+
+    /* -----------------------------------------------------------
+     * 3. SISTEM NOTIFIKASI TOAST, BINTANG, & KONFETI KANVAS
+     * ----------------------------------------------------------- */
+    function showToast(message, bgClass = 'bg-sky-600 text-white border-sky-800') {
+      const container = document.getElementById('toastContainer');
+      const item = document.createElement('div');
+      item.className = `${bgClass} border-2 border-b-4 px-4 py-2.5 rounded-2xl shadow-lg font-bold text-sm sm:text-base text-center animate-pop`;
+      item.textContent = message;
+      container.appendChild(item);
+      setTimeout(() => {
+        item.style.opacity = '0';
+        item.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => item.remove(), 320);
+      }, 2600);
+    }
+
+    function addStars(amount, reasonText) {
+      state.stars += amount;
+      saveState();
+      const starBadge = document.getElementById('starBadge');
+      starBadge.classList.remove('animate-pop');
+      void starBadge.offsetWidth;
+      starBadge.classList.add('animate-pop');
+      if (reasonText) {
+        showToast(`⭐ +${amount} Bintang! ${reasonText}`, 'bg-amber-400 text-amber-950 border-amber-600');
+      }
+    }
+
+    // Mesin Konfeti Kanvas Ringan
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const confettiCtx = confettiCanvas.getContext('2d');
+    let confettiParticles = [];
+    let confettiAnimId = null;
+
+    function launchConfetti(count = 75) {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+      const colors = ['#FF6B6B', '#38BDF8', '#4ADE80', '#FACC15', '#C084FC', '#FB923C', '#F472B6'];
+      for (let i = 0; i < count; i++) {
+        confettiParticles.push({
+          x: window.innerWidth / 2 + (Math.random() - 0.5) * 260,
+          y: window.innerHeight * 0.35,
+          vx: (Math.random() - 0.5) * 14,
+          vy: -Math.random() * 12 - 4,
+          size: Math.random() * 9 + 6,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rot: Math.random() * 360,
+          vrot: (Math.random() - 0.5) * 12,
+          life: 1
+        });
+      }
+      if (!confettiAnimId) animateConfetti();
+    }
+
+    function animateConfetti() {
+      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiParticles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.34; // gravitasi
+        p.rot += p.vrot;
+        p.life -= 0.012;
+        confettiCtx.save();
+        confettiCtx.translate(p.x, p.y);
+        confettiCtx.rotate((p.rot * Math.PI) / 180);
+        confettiCtx.globalAlpha = Math.max(0, p.life);
+        confettiCtx.fillStyle = p.color;
+        confettiCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+        confettiCtx.restore();
       });
-    });
-  </script>
-</body>
-</html>
+      confettiParticles = confettiParticles.filter(p => p.life > 0 && p.y < confettiCanvas.height + 30);
+      if (confettiParticles.length > 0) {
+        confettiAnimId = requestAnimationFrame(animateConfetti);
+      } else {
+        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        confettiAnimId = null;
+      }
+    }
+
+
+    /* -----------------------------------------------------------
+     * 4. KOLEKSI ILUSTRASI SVG KAWAII BENTUK 2D & 3D
+     * ----------------------------------------------------------- */
+    function kawaiiFaceSVG(cx, cy, scale = 1) {
+      return `
+        <g transform="translate(${cx}, ${cy}) scale(${scale})">
+          <circle cx="-11" cy="-3" r="3.6" fill="#1E293B"/>
+          <circle cx="-12.2" cy="-4.3" r="1.2" fill="#FFFFFF"/>
+          <circle cx="11" cy="-3" r="3.6" fill="#1E293B"/>
+          <circle cx="9.8" cy="-4.3" r="1.2" fill="#FFFFFF"/>
+          <ellipse cx="-16" cy="3" rx="4.2" ry="2.5" fill="#FB7185" opacity="0.65"/>
+          <ellipse cx="16" cy="3" rx="4.2" ry="2.5" fill="#FB7185" opacity="0.65"/>
+          <path d="M-6,3 Q0,9.5 6,3" fill="none" stroke="#1E293B" stroke-width="2.8" stroke-linecap="round"/>
+        </g>
+      `;
+    }
+
+    function getShapeSVG(id) {
+      switch (id) {
+        // === 6 BANGUN DATAR (2D) ===
+        case 'segitiga':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <polygon points="60,14 108,100 12,100" fill="#FF7A7A" stroke="#DC2626" stroke-width="4.5" stroke-linejoin="round"/>
+            ${kawaiiFaceSVG(60, 74, 1)}
+          </svg>`;
+        case 'lingkaran':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <circle cx="60" cy="60" r="45" fill="#58C7FA" stroke="#0284C7" stroke-width="4.5"/>
+            ${kawaiiFaceSVG(60, 62, 1.08)}
+          </svg>`;
+        case 'persegi':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <rect x="18" y="18" width="84" height="84" rx="6" fill="#5EEAD4" stroke="#0D9488" stroke-width="4.5"/>
+            ${kawaiiFaceSVG(60, 62, 1.08)}
+          </svg>`;
+        case 'persegi_panjang':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <rect x="10" y="30" width="100" height="62" rx="6" fill="#C4B5FD" stroke="#7C3AED" stroke-width="4.5"/>
+            ${kawaiiFaceSVG(60, 62, 1.05)}
+          </svg>`;
+        case 'jajar_genjang':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <polygon points="30,28 110,28 90,92 10,92" fill="#FDE047" stroke="#CA8A04" stroke-width="4.5" stroke-linejoin="round"/>
+            ${kawaiiFaceSVG(60, 62, 1)}
+          </svg>`;
+        case 'trapesium':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <polygon points="32,28 88,28 110,92 10,92" fill="#FDBA74" stroke="#EA580C" stroke-width="4.5" stroke-linejoin="round"/>
+            ${kawaiiFaceSVG(60, 64, 1)}
+          </svg>`;
+
+        // === 5 BANGUN RUANG (3D DENGAN KEDALAMAN & GARIS PUTUS-PUTUS) ===
+        case 'kubus':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <!-- Sisi Atas -->
+            <polygon points="22,38 46,16 100,16 76,38" fill="#FBCFE8" stroke="#DB2777" stroke-width="3.8" stroke-linejoin="round"/>
+            <!-- Sisi Kanan -->
+            <polygon points="76,38 100,16 100,76 76,98" fill="#EC4899" stroke="#DB2777" stroke-width="3.8" stroke-linejoin="round"/>
+            <!-- Sisi Depan -->
+            <rect x="22" y="38" width="54" height="60" fill="#F472B6" stroke="#DB2777" stroke-width="3.8" stroke-linejoin="round"/>
+            <!-- Rusuk Belakang Putus-putus -->
+            <polyline points="46,16 46,76 22,98" fill="none" stroke="#9D174D" stroke-width="2" stroke-dasharray="4,4" opacity="0.55"/>
+            <line x1="46" y1="76" x2="100" y2="76" stroke="#9D174D" stroke-width="2" stroke-dasharray="4,4" opacity="0.55"/>
+            ${kawaiiFaceSVG(49, 70, 0.92)}
+          </svg>`;
+        case 'balok':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <!-- Sisi Atas -->
+            <polygon points="12,44 34,24 108,24 86,44" fill="#BAE6FD" stroke="#0284C7" stroke-width="3.8" stroke-linejoin="round"/>
+            <!-- Sisi Kanan -->
+            <polygon points="86,44 108,24 108,74 86,94" fill="#38BDF8" stroke="#0284C7" stroke-width="3.8" stroke-linejoin="round"/>
+            <!-- Sisi Depan -->
+            <rect x="12" y="44" width="74" height="50" fill="#7DD3FC" stroke="#0284C7" stroke-width="3.8" stroke-linejoin="round"/>
+            <!-- Rusuk Belakang Putus-putus -->
+            <polyline points="34,24 34,74 12,94" fill="none" stroke="#0369A1" stroke-width="2" stroke-dasharray="4,4" opacity="0.5"/>
+            <line x1="34" y1="74" x2="108" y2="74" stroke="#0369A1" stroke-width="2" stroke-dasharray="4,4" opacity="0.5"/>
+            ${kawaiiFaceSVG(49, 70, 0.95)}
+          </svg>`;
+        case 'bola':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <defs>
+              <radialGradient id="gradBola3D" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFE4E6"/>
+                <stop offset="35%" stop-color="#FB7185"/>
+                <stop offset="100%" stop-color="#E11D48"/>
+              </radialGradient>
+            </defs>
+            <circle cx="60" cy="60" r="45" fill="url(#gradBola3D)" stroke="#BE123C" stroke-width="4"/>
+            <!-- Garis Lengkung Ruang 3D -->
+            <ellipse cx="60" cy="60" rx="45" ry="14" fill="none" stroke="#881337" stroke-width="2.2" stroke-dasharray="5,4" opacity="0.55"/>
+            <ellipse cx="43" cy="36" rx="10" ry="5.5" transform="rotate(-28 43 36)" fill="#FFFFFF" opacity="0.65"/>
+            ${kawaiiFaceSVG(60, 65, 1)}
+          </svg>`;
+        case 'tabung':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <!-- Badan Tabung -->
+            <path d="M26,30 L26,88 A34,13 0 0,0 94,88 L94,30 Z" fill="#86EFAC" stroke="#15803D" stroke-width="3.8" stroke-linejoin="round"/>
+            <!-- Tutup Atas Elips -->
+            <ellipse cx="60" cy="30" rx="34" ry="13" fill="#BBF7D0" stroke="#15803D" stroke-width="3.8"/>
+            <!-- Garis Belakang Alas Putus-putus -->
+            <path d="M26,88 A34,13 0 0,1 94,88" fill="none" stroke="#166534" stroke-width="2.2" stroke-dasharray="4,4" opacity="0.6"/>
+            ${kawaiiFaceSVG(60, 64, 0.96)}
+          </svg>`;
+        case 'kerucut':
+          return `<svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-sm">
+            <!-- Selimut Kerucut -->
+            <path d="M60,14 L20,88 A40,13 0 0,0 100,88 Z" fill="#FDE047" stroke="#CA8A04" stroke-width="3.8" stroke-linejoin="round"/>
+            <!-- Garis Belakang Alas Putus-putus -->
+            <path d="M20,88 A40,13 0 0,1 100,88" fill="none" stroke="#A16207" stroke-width="2.3" stroke-dasharray="4,4" opacity="0.65"/>
+            ${kawaiiFaceSVG(60, 69, 0.92)}
+          </svg>`;
+        default:
+          return '';
+      }
+    }
+
+
+    /* -----------------------------------------------------------
+     * 5. DATA ENSIKLOPEDIA 11 BENTUK (6 DATAR + 5 RUANG)
+     * ----------------------------------------------------------- */
+    const SHAPES_DATA = [
+      // 6 Bangun Datar (2D)
+      {
+        id: 'segitiga',
+        name: 'Segitiga',
+        category: '2d',
+        categoryLabel: 'Bangun Datar (2D)',
+        cardBorder: 'border-rose-300',
+        badgeColor: 'bg-rose-100 text-rose-800',
+        stats: [
+          { label: 'Jumlah Sisi', val: '3 Sisi' },
+          { label: 'Titik Sudut', val: '3 Sudut' },
+          { label: 'Jenis', val: 'Datar (2D)' }
+        ],
+        desc: 'Segitiga adalah bangun datar yang dibatasi oleh 3 garis lurus (sisi) dan memiliki 3 titik sudut.',
+        examples: ['🍕 Potongan Pizza', '⚠️ Rambu Segitiga', '📐 Penggaris Segitiga', '🏠 Atap Rumah Depan']
+      },
+      {
+        id: 'lingkaran',
+        name: 'Lingkaran',
+        category: '2d',
+        categoryLabel: 'Bangun Datar (2D)',
+        cardBorder: 'border-sky-300',
+        badgeColor: 'bg-sky-100 text-sky-800',
+        stats: [
+          { label: 'Jumlah Sisi', val: '1 Sisi Lengkung' },
+          { label: 'Titik Sudut', val: '0 (Tidak Ada)' },
+          { label: 'Jenis', val: 'Datar (2D)' }
+        ],
+        desc: 'Lingkaran adalah bangun datar berbentuk bulat pipih/rata yang memiliki 1 sisi lengkung dan TIDAK memiliki titik sudut. Ingat, kalau bangun datar bulat namanya Lingkaran ya, bukan Bola!',
+        examples: ['🕒 Permukaan Jam Dinding', '🪙 Uang Logam (Koin)', '🍽️ Piring Makan Bulat', '🛞 Roda Sepeda']
+      },
+      {
+        id: 'persegi',
+        name: 'Persegi',
+        category: '2d',
+        categoryLabel: 'Bangun Datar (2D)',
+        cardBorder: 'border-teal-300',
+        badgeColor: 'bg-teal-100 text-teal-800',
+        stats: [
+          { label: 'Jumlah Sisi', val: '4 Sisi Sama Panjang' },
+          { label: 'Titik Sudut', val: '4 Sudut Siku-Siku' },
+          { label: 'Jenis', val: 'Datar (2D)' }
+        ],
+        desc: 'Persegi adalah bangun datar segi empat yang keempat sisinya memiliki ukuran SAMA PANJANG dan memiliki 4 titik sudut.',
+        examples: ['🟦 Ubin Lantai Persegi', '🖼️ Bingkai Foto Persegi', '🪟 Jendela Persegi', '📄 Kertas Origami']
+      },
+      {
+        id: 'persegi_panjang',
+        name: 'Persegi Panjang',
+        category: '2d',
+        categoryLabel: 'Bangun Datar (2D)',
+        cardBorder: 'border-purple-300',
+        badgeColor: 'bg-purple-100 text-purple-800',
+        stats: [
+          { label: 'Jumlah Sisi', val: '4 Sisi (2 Pasang)' },
+          { label: 'Titik Sudut', val: '4 Sudut Siku-Siku' },
+          { label: 'Jenis', val: 'Datar (2D)' }
+        ],
+        desc: 'Persegi panjang memiliki 4 sisi, dengan 2 sisi panjang yang berhadapan sama panjang dan 2 sisi pendek (lebar) yang sama panjang.',
+        examples: ['🏫 Papan Tulis Kelas', '🚪 Pintu Rumah', '📓 Buku Gambar', '🇮🇩 Bendera Merah Putih']
+      },
+      {
+        id: 'jajar_genjang',
+        name: 'Jajar Genjang',
+        category: '2d',
+        categoryLabel: 'Bangun Datar (2D)',
+        cardBorder: 'border-yellow-400',
+        badgeColor: 'bg-yellow-100 text-yellow-900',
+        stats: [
+          { label: 'Jumlah Sisi', val: '4 Sisi' },
+          { label: 'Titik Sudut', val: '4 Titik Sudut' },
+          { label: 'Ciri Khas', val: 'Sisi Miring Sejajar' }
+        ],
+        desc: 'Jajar genjang adalah bangun datar segi empat yang sisi-sisi berhadapannya sejajar dan sama panjang seperti persegi panjang yang dimiringkan.',
+        examples: ['🎨 Motif Kain Batik', '🧽 Penghapus Miring', '🏢 Atap Bangunan Modern', '🧩 Potongan Tangram']
+      },
+      {
+        id: 'trapesium',
+        name: 'Trapesium',
+        category: '2d',
+        categoryLabel: 'Bangun Datar (2D)',
+        cardBorder: 'border-orange-300',
+        badgeColor: 'bg-orange-100 text-orange-900',
+        stats: [
+          { label: 'Jumlah Sisi', val: '4 Sisi' },
+          { label: 'Titik Sudut', val: '4 Titik Sudut' },
+          { label: 'Ciri Khas', val: '1 Pasang Sisi Sejajar' }
+        ],
+        desc: 'Trapesium adalah bangun datar segi empat yang memiliki tepat satu pasang sisi berhadapan yang sejajar (bagian atas dan bawah berbeda panjang).',
+        examples: ['🏠 Atap Rumah Samping', '👜 Tas Tangan Ibu', '⛵ Badan Perahu Kertas', '🪴 Pot Bunga Tampak Depan']
+      },
+
+      // 5 Bangun Ruang (3D)
+      {
+        id: 'kubus',
+        name: 'Kubus',
+        category: '3d',
+        categoryLabel: 'Bangun Ruang (3D)',
+        cardBorder: 'border-pink-300',
+        badgeColor: 'bg-pink-100 text-pink-800',
+        stats: [
+          { label: 'Jumlah Sisi', val: '6 Sisi Persegi' },
+          { label: 'Titik Sudut', val: '8 Titik Sudut' },
+          { label: 'Jumlah Rusuk', val: '12 Rusuk Sama' }
+        ],
+        desc: 'Kubus adalah bangun ruang berbentuk kotak yang memiliki 6 sisi berbentuk persegi sama besar, 8 titik sudut, dan 12 rusuk.',
+        examples: ['🎲 Dadu Permainan', '🎁 Kotak Kado Persegi', '🧊 Mainan Rubik', '📦 Kardus Kotak Sama Sisi']
+      },
+      {
+        id: 'balok',
+        name: 'Balok',
+        category: '3d',
+        categoryLabel: 'Bangun Ruang (3D)',
+        cardBorder: 'border-sky-400',
+        badgeColor: 'bg-sky-100 text-sky-900',
+        stats: [
+          { label: 'Jumlah Sisi', val: '6 Sisi' },
+          { label: 'Titik Sudut', val: '8 Titik Sudut' },
+          { label: 'Jumlah Rusuk', val: '12 Rusuk' }
+        ],
+        desc: 'Balok adalah bangun ruang seperti kotak memanjang yang dibatasi oleh 6 sisi (umumnya berbentuk persegi panjang), memiliki 8 titik sudut dan 12 rusuk.',
+        examples: ['👟 Kotak Sepatu', '✏️ Kotak Pensil', '🚪 Lemari Pakaian', '🧽 Spons Cuci Piring']
+      },
+      {
+        id: 'bola',
+        name: 'Bola',
+        category: '3d',
+        categoryLabel: 'Bangun Ruang (3D)',
+        cardBorder: 'border-rose-400',
+        badgeColor: 'bg-rose-100 text-rose-900',
+        stats: [
+          { label: 'Jumlah Sisi', val: '1 Sisi Lengkung' },
+          { label: 'Titik Sudut', val: '0 (Tidak Ada)' },
+          { label: 'Jenis', val: 'Ruang Bulat Penuh' }
+        ],
+        desc: 'Bola adalah bangun ruang (3D) yang bulat penuh ke segala arah, bisa menggelinding dan digenggam, serta tidak memiliki titik sudut.',
+        examples: ['⚽ Bola Sepak', '🏀 Bola Basket', '🍊 Buah Jeruk', '🔮 Kelereng']
+      },
+      {
+        id: 'tabung',
+        name: 'Tabung',
+        category: '3d',
+        categoryLabel: 'Bangun Ruang (3D)',
+        cardBorder: 'border-emerald-400',
+        badgeColor: 'bg-emerald-100 text-emerald-900',
+        stats: [
+          { label: 'Jumlah Sisi', val: '3 Sisi (Alas, Tutup, Selimut)' },
+          { label: 'Alas & Tutup', val: 'Lingkaran' },
+          { label: 'Titik Sudut', val: '0 (Tidak Ada)' }
+        ],
+        desc: 'Tabung memiliki 3 sisi, yaitu sisi alas dan sisi atas (tutup) yang berbentuk bangun datar LINGKARAN sama besar, serta selimut lengkung.',
+        examples: ['🥫 Kaleng Susu', '🥛 Gelas Minum', '🍼 Botol Minum', '🛢️ Drum Air']
+      },
+      {
+        id: 'kerucut',
+        name: 'Kerucut',
+        category: '3d',
+        categoryLabel: 'Bangun Ruang (3D)',
+        cardBorder: 'border-amber-400',
+        badgeColor: 'bg-amber-100 text-amber-900',
+        stats: [
+          { label: 'Jumlah Sisi', val: '2 Sisi (Alas & Selimut)' },
+          { label: 'Titik Puncak', val: '1 Titik Puncak Lancip' },
+          { label: 'Bentuk Alas', val: 'Lingkaran' }
+        ],
+        desc: 'Kerucut memiliki sisi alas berbentuk lingkaran dan selimut yang mengerucut ke atas membentuk 1 titik puncak yang lancip!',
+        examples: ['🎉 Topi Ulang Tahun', '🍦 Tempat Es Krim (Cone)', '👒 Caping Petani', '🚧 Kerucut Lalu Lintas']
+      }
+    ];
+
+    let currentShapeFilter = 'all';
+    let activeModalShapeId = null;
+
+    function renderMiniComparisonShapes() {
+      document.querySelectorAll('[data-mini-shape]').forEach(el => {
+        const id = el.getAttribute('data-mini-shape');
+        el.innerHTML = getShapeSVG(id);
+      });
+    }
+
+    function toggleComparisonBox() {
+      playPopSound();
+      const box = document.getElementById('comparisonDetails');
+      const btn = document.getElementById('toggleCompBtn');
+      const isHidden = box.classList.contains('hidden');
+      if (isHidden) {
+        box.classList.remove('hidden');
+        btn.textContent = 'Sembunyikan 🔼';
+      } else {
+        box.classList.add('hidden');
+        btn.textContent = 'Lihat Contoh 👀';
+      }
+    }
+
+    function speakComparisonGuide() {
+      playPopSound();
+      speakIndonesian('Ingat ya teman-teman! Bangun datar itu tipis dan rata, contohnya permukaan jam dinding dan uang koin berbentuk lingkaran. Sedangkan bangun ruang itu memiliki isi dan bisa digenggam penuh, contohnya bola sepak dan jeruk berbentuk bola!');
+    }
+
+    function filterShapes(filter) {
+      playPopSound();
+      currentShapeFilter = filter;
+      ['all', '2d', '3d'].forEach(f => {
+        const btn = document.getElementById(`filter-${f}`);
+        if (f === filter) {
+          btn.className = 'shape-filter-btn candy-btn px-4 py-2 text-sm sm:text-base font-bold border-2 bg-sky-500 text-white border-sky-700 border-b-sky-800';
+        } else {
+          btn.className = 'shape-filter-btn candy-btn px-4 py-2 text-sm sm:text-base font-bold border-2 bg-white text-slate-700 border-slate-300 border-b-slate-400';
+        }
+      });
+      renderShapesGrid();
+    }
+
+    function renderShapesGrid() {
+      const grid = document.getElementById('shapesGrid');
+      const list = SHAPES_DATA.filter(s => currentShapeFilter === 'all' || s.category === currentShapeFilter);
+
+      grid.innerHTML = list.map(shape => {
+        const explored = state.exploredShapes.includes(shape.id);
+        return `
+          <button onclick="openShapeModal('${shape.id}')" class="candy-card candy-card-interactive ${shape.cardBorder} p-5 text-left flex flex-col justify-between relative group">
+            ${explored ? `<span class="absolute top-3.5 right-3.5 bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-extrabold px-2.5 py-0.5 rounded-full">✅ Dipelajari</span>` : `<span class="absolute top-3.5 right-3.5 bg-amber-100 text-amber-800 border border-amber-300 text-xs font-extrabold px-2.5 py-0.5 rounded-full">+1 ⭐ Baru!</span>`}
+            <div>
+              <span class="inline-block ${shape.badgeColor} text-xs font-black px-2.5 py-1 rounded-full mb-2">
+                ${shape.categoryLabel}
+              </span>
+              <div class="w-28 h-28 mx-auto my-2 transition-transform duration-200 group-hover:scale-110">
+                ${getShapeSVG(shape.id)}
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-800 text-center mt-1">${shape.name}</h3>
+              <p class="text-xs sm:text-sm font-bold text-slate-500 text-center mt-1">
+                ${shape.stats[0].val} • ${shape.stats[1].val}
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm font-extrabold text-sky-700">
+              <span>${shape.examples[0]}</span>
+              <span class="bg-sky-50 px-2.5 py-1 rounded-xl">Kenalan ➡️</span>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      document.getElementById('exploredCounterText').textContent = `${state.exploredShapes.length} / ${SHAPES_DATA.length}`;
+    }
+
+    function openShapeModal(shapeId) {
+      const shape = SHAPES_DATA.find(s => s.id === shapeId);
+      if (!shape) return;
+      activeModalShapeId = shapeId;
+
+      // Beri bintang jika baru pertama kali dijelajahi
+      if (!state.exploredShapes.includes(shapeId)) {
+        state.exploredShapes.push(shapeId);
+        playSuccessSound();
+        addStars(1, `Kenalan dengan ${shape.name}!`);
+        if (state.exploredShapes.length === SHAPES_DATA.length) {
+          launchConfetti(90);
+          showToast('🎉 Hebat! Kamu sudah mengenali SEMUA 11 Bentuk!', 'bg-emerald-500 text-white border-emerald-700');
+        }
+        renderShapesGrid();
+      } else {
+        playPopSound();
+      }
+
+      document.getElementById('modalShapeBadge').className = `inline-block text-xs font-black px-3 py-1 rounded-full mb-1 ${shape.badgeColor}`;
+      document.getElementById('modalShapeBadge').textContent = shape.categoryLabel;
+      document.getElementById('modalShapeTitle').textContent = shape.name;
+      document.getElementById('modalShapeSVG').innerHTML = getShapeSVG(shape.id);
+      document.getElementById('modalShapeDesc').textContent = shape.desc;
+
+      document.getElementById('modalShapeStats').innerHTML = shape.stats.map(st => `
+        <div class="bg-sky-50 border border-sky-200 rounded-2xl p-2.5 text-center">
+          <div class="text-[11px] font-extrabold uppercase text-slate-500">${st.label}</div>
+          <div class="font-kid text-sm sm:text-base font-bold text-sky-950 mt-0.5">${st.val}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('modalShapeExamples').innerHTML = shape.examples.map(ex => `
+        <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-bold text-slate-700 text-xs sm:text-sm">
+          ${ex}
+        </div>
+      `).join('');
+
+      document.getElementById('shapeModal').classList.remove('hidden');
+      speakActiveModalShape();
+    }
+
+    function speakActiveModalShape() {
+      const shape = SHAPES_DATA.find(s => s.id === activeModalShapeId);
+      if (!shape) return;
+      const cleanExamples = shape.examples.map(e => e.replace(/[^\w\s()]/gi, '').trim()).join(', ');
+      speakIndonesian(`${shape.name}. Termasuk ${shape.categoryLabel}. ${shape.desc} Contoh benda di sekitar kita: ${cleanExamples}.`);
+    }
+
+    function closeShapeModal() {
+      playPopSound();
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      document.getElementById('shapeModal').classList.add('hidden');
+    }
+
+
+    /* -----------------------------------------------------------
+     * 6. TAB 2: PASANGKAN BENDA & AYO BERHITUNG BANGUN RUANG
+     * ----------------------------------------------------------- */
+    const MATCH_ROUNDS = [
+      // Ronde 1: Persis LKPD Bagian A & B (Bola sepak, Dadu, Kaleng susu, Topi ulang tahun, Kotak sepatu)
+      [
