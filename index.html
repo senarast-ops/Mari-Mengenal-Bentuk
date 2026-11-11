@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Proyek Digital</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-hover: #26354d;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
+      --border: #334155;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-hover: #f1f5f9;
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.12);
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+      flex: 1;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-glow);
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background-color: #22c55e;
+      border-radius: 50%;
+    }
+
+    .theme-btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.9rem;
+      border-radius: 0.6rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .theme-btn:hover {
+      background: var(--surface-hover);
+    }
+
+    .hero {
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 600px;
+      font-size: 1rem;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.75rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .search-box:focus {
+      border-color: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      background: var(--surface-hover);
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">
+        <span class="dot"></span>
+        Aktif di GitHub Pages
+      </div>
+      <button class="theme-btn" id="themeToggle" type="button">Ubah Tema</button>
+    </header>
+
+    <!-- Ubah judul dan deskripsi utama di bagian ini -->
+    <section class="hero">
+      <h1>Workspace &amp; Aplikasi Web</h1>
+      <p>Kumpulan aplikasi web, eksperimen kreatif, dan utilitas digital yang dapat dijalankan langsung dari browser.</p>
+    </section>
+
+    <input
+      type="text"
+      id="searchInput"
+      class="search-box"
+      placeholder="Cari nama proyek atau kategori..."
+    >
+
+    <!-- Ubah href="#" dengan link repositori atau folder aplikasi kamu -->
+    <main class="grid" id="projectGrid">
+      <a href="#" class="card">
+        <div>
+          <div class="card-tag">Multimedia</div>
+          <h2>Studio Konverter Media</h2>
+          <p>Alat konversi dokumen, gambar, dan audio-video praktis langsung dari browser.</p>
+        </div>
+        <span class="card-link">Buka Aplikasi &rarr;</span>
+      </a>
+
+      <a href="#" class="card">
+        <div>
+          <div class="card-tag">Hiburan</div>
+          <h2>Web Game Interaktif</h2>
+          <p>Permainan ringan lintas perangkat untuk PC maupun ponsel pintar tanpa instalasi.</p>
+        </div>
+        <span class="card-link">Mainkan Sekarang &rarr;</span>
+      </a>
+
+      <a href="#" class="card">
+        <div>
+          <div class="card-tag">Produktivitas</div>
+          <h2>Catatan Keuangan</h2>
+          <p>Pantau pemasukan, pengeluaran bulanan, dan ringkasan anggaran secara rapi.</p>
+        </div>
+        <span class="card-link">Buka Dashboard &rarr;</span>
+      </a>
+    </main>
+  </div>
+
+  <footer>
+    &copy; <span id="year"></span> Dipublikasikan menggunakan GitHub Desktop &amp; GitHub Pages.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const themeBtn = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+
+    themeBtn.addEventListener("click", () => {
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
+      if (isLight) {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+      }
+    });
+
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".card");
+
+    searchInput.addEventListener("input", (e) => {
+      const keyword = e.target.value.toLowerCase();
+      cards.forEach((card) => {
+        const match = card.textContent.toLowerCase().includes(keyword);
+        card.style.display = match ? "flex" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
